@@ -113,8 +113,7 @@ DROP TABLE IF EXISTS roles;
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name TEXT,
-    last_name TEXT
+    name TEXT
 );
 
 CREATE TABLE movies (
@@ -122,7 +121,7 @@ CREATE TABLE movies (
     title TEXT,
     rating TEXT,
     release_date TEXT,
-    studio_id
+    studio_id INTEGER
 );
 
 CREATE TABLE studios (
@@ -133,15 +132,77 @@ CREATE TABLE studios (
 CREATE TABLE roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role TEXT,
-    movie_id TEXT,
-    actor_id TEXT
+    movie_id INTEGER,
+    actor_id INTEGER
 );
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
+INSERT INTO movies (
+    title,
+    release_date,
+    rating,
+    studio_id
+)
 
+VALUES (
+    "Batman Begins",
+    "2005",
+    "PG-13",
+    1
+);
+
+INSERT INTO movies (
+    title,
+    release_date,
+    rating,
+    studio_id
+)
+
+VALUES (
+    "The Dark Knight",
+    "2008",
+    "PG-13",
+    1
+);
+
+INSERT INTO movies (
+    title,
+    release_date,
+    rating,
+    studio_id
+)
+
+VALUES (
+    "The Dark Knight Rises",
+    "2012",
+    "PG-13",
+    1
+);
+
+INSERT INTO studios (
+    name
+)
+
+VALUES (
+    "Warner Bros."
+);
+
+INSERT INTO actors (name)
+VALUES 
+('Christian Bale'),
+('Michael Caine'),
+('Lian Neeson'),
+('Katie Holmes'),
+('Gary Oldman'),
+('Heath Ledger'),
+('Aaron Eckhart'),
+('Maggie Gyllenhaal'),
+('Tom Hardy'),
+('Joseph Gordon-Levitt'),
+('Ann Hathaway');
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -150,6 +211,10 @@ CREATE TABLE roles (
 
 -- The SQL statement for the movies output
 -- TODO!
+
+SELECT title, release_date, rating, studio_id FROM movies;
+
+SELECT name FROM actors;
 
 -- Prints a header for the cast output
 .print ""
