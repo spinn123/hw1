@@ -98,6 +98,7 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
+.width 21 20 20 
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -141,6 +142,7 @@ CREATE TABLE roles (
 -- TODO!
 
 INSERT INTO movies (
+    id,
     title,
     release_date,
     rating,
@@ -148,6 +150,7 @@ INSERT INTO movies (
 )
 
 VALUES (
+    1,
     "Batman Begins",
     "2005",
     "PG-13",
@@ -155,6 +158,7 @@ VALUES (
 );
 
 INSERT INTO movies (
+    id,
     title,
     release_date,
     rating,
@@ -162,6 +166,7 @@ INSERT INTO movies (
 )
 
 VALUES (
+    2,
     "The Dark Knight",
     "2008",
     "PG-13",
@@ -169,6 +174,7 @@ VALUES (
 );
 
 INSERT INTO movies (
+    id,
     title,
     release_date,
     rating,
@@ -176,6 +182,7 @@ INSERT INTO movies (
 )
 
 VALUES (
+    3,
     "The Dark Knight Rises",
     "2012",
     "PG-13",
@@ -209,20 +216,27 @@ VALUES
 ;
 
 INSERT INTO roles (
-    role
+    role,
+    actor_id,
+    movie_id
 )
 
 VALUES
-("Bruce Wayne"),
-("Alfred"),
-("Ra's Al Ghul"),
-("Rachel Dawes"),
-("Commissioner Gordon"),
-("Joker"),
-("Harvey Dent"),
-("Bane"),
-("John Blake"),
-("Selina Kyle")
+("Bruce Wayne",1,1),
+("Alfred",2,1),
+("Ra's Al Ghul",3,1),
+("Rachel Dawes",4,1),
+("Commissioner Gordon",5,1),
+("Bruce Wayne",1,2),
+("Joker",6,2),
+("Harvey Dent",7,2),
+("Alfred",2,2),
+("Rachel Dawes",8,2),
+("Bruce Wayne",1,3),
+("Commissioner Gordon",5,3),
+("Bane",9,3),
+("John Blake",10,3),
+("Selina Kyle",11,3)
 ;
 
 -- Prints a header for the movies output
@@ -245,4 +259,7 @@ SELECT title, release_date, rating, studio FROM movies INNER JOIN studios on mov
 -- The SQL statement for the cast output
 -- TODO!
 
----SELECT role, title FROM roles INNER JOIN movies on roles.movie_id = movies.id; 
+SELECT movies.title, actors.name, roles.role 
+FROM roles 
+INNER JOIN movies on roles.movie_id = movies.id 
+INNER JOIN actors on roles.actor_id = actors.id; 
