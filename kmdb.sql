@@ -126,7 +126,7 @@ CREATE TABLE movies (
 
 CREATE TABLE studios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT
+    studio TEXT
 );
 
 CREATE TABLE roles (
@@ -183,14 +183,17 @@ VALUES (
 );
 
 INSERT INTO studios (
-    name
+    studio
 )
 
 VALUES (
     "Warner Bros."
 );
 
-INSERT INTO actors (name)
+INSERT INTO actors (
+    name
+    )
+
 VALUES 
 ('Christian Bale'),
 ('Michael Caine'),
@@ -202,7 +205,25 @@ VALUES
 ('Maggie Gyllenhaal'),
 ('Tom Hardy'),
 ('Joseph Gordon-Levitt'),
-('Ann Hathaway');
+('Ann Hathaway')
+;
+
+INSERT INTO roles (
+    role
+)
+
+VALUES
+("Bruce Wayne"),
+("Alfred"),
+("Ra's Al Ghul"),
+("Rachel Dawes"),
+("Commissioner Gordon"),
+("Joker"),
+("Harvey Dent"),
+("Bane"),
+("John Blake"),
+("Selina Kyle")
+;
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -212,9 +233,8 @@ VALUES
 -- The SQL statement for the movies output
 -- TODO!
 
-SELECT title, release_date, rating, studio_id FROM movies;
+SELECT title, release_date, rating, studio FROM movies INNER JOIN studios on movies.studio_id = studios.id; 
 
-SELECT name FROM actors;
 
 -- Prints a header for the cast output
 .print ""
@@ -222,6 +242,7 @@ SELECT name FROM actors;
 .print "========"
 .print ""
 
-
 -- The SQL statement for the cast output
 -- TODO!
+
+---SELECT role, title FROM roles INNER JOIN movies on roles.movie_id = movies.id; 
